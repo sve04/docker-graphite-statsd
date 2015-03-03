@@ -4,7 +4,7 @@
 
 This is a fork from [hopsoft](https://github.com/hopsoft/docker-graphite-statsd) adding a couple of extra things. Massive love to Hopsoft for setting up the original.
 
-In this image, Graphite is always setup with Basic Auth (feed your .htpasswd file when starting) and the Graphite data dir is set to */data/graphite*.
+In this image, Graphite is always setup with Basic Auth (feed your .htpasswd file when starting) and the Graphite data dir is set to */opt/graphite/storage/whisper*.
 
 ## Quick Start
 
@@ -38,7 +38,7 @@ sudo docker run -d \
   -p 2003:2003 \
   -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
-  -v /path/to/data/graphite/:/data/graphite/
+  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper
   sitespeedio/graphite
 ```
 
