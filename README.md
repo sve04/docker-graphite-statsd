@@ -17,7 +17,7 @@ sudo docker run -d \
   sitespeedio/graphite
 ```
 
-This starts a Docker container named: **graphite** with Basic Auth **guest/guest**. Please change that by feeding your own.htpasswd file when starting the container like this:
+This starts a Docker container named: **graphite** with Basic Auth **guest/guest**. Please change the login that by feeding your own .htpasswd file when starting the container ([more info about how to create your .htpasswd file](http://httpd.apache.org/docs/2.2/programs/htpasswd.html)):
 
 ```sh
 sudo docker run -d \
