@@ -11,7 +11,7 @@ In this image, Graphite is always setup with Basic Auth (feed your .htpasswd fil
 ```sh
 sudo docker run -d \
   --name graphite \
-  -p 80:80 \
+  -p 8080:80 \
   -p 2003:2003 \
   -p 8125:8125/udp \
   sitespeedio/graphite
@@ -22,7 +22,7 @@ This starts a Docker container named: **graphite** with Basic Auth **guest/guest
 ```sh
 sudo docker run -d \
   --name graphite \
-  -p 80:80 \
+  -p 8080:80 \
   -p 2003:2003 \
   -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
@@ -34,7 +34,7 @@ And the final config that you should do, is map the graphite data dir outside of
 ```sh
 sudo docker run -d \
   --name graphite \
-  -p 80:80 \
+  -p 8080:80 \
   -p 2003:2003 \
   -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
