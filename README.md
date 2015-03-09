@@ -2,7 +2,7 @@
 
 ## Get Graphite & Statsd running instantly
 
-This is a fork from [hopsoft](https://github.com/hopsoft/docker-graphite-statsd) adding a couple of extra things. Massive love to Hopsoft for setting up the original.
+This is a fork from [Hopsoft](https://github.com/hopsoft/docker-graphite-statsd) adding a couple of extra things. Massive love to Hopsoft for setting up the original.
 
 In this image, Graphite is always setup with Basic Auth (feed your .htpasswd file when starting) and the Graphite data dir is set to */opt/graphite/storage/whisper*.
 
@@ -13,7 +13,6 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   sitespeedio/graphite
 ```
 
@@ -24,7 +23,6 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
   sitespeedio/graphite
 ```
@@ -36,9 +34,8 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
-  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper
+  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper \
   sitespeedio/graphite
 ```
 
