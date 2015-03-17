@@ -38,7 +38,7 @@ sudo docker run -d \
   -p 2003:2003 \
   -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
-  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper
+  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper \
   sitespeedio/graphite
 ```
 
