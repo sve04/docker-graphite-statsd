@@ -50,8 +50,10 @@ You can change how often data will be stored in the  [storage-schemas.conf](http
 The default one looks like this:
 
 ```
-5m:1d,15m:21d,30m:2y
+retentions = 5m:1d,15m:30d
 ```
+
+It will store data for 30 days, change that if you need to store data longer.
 
 ### Base Image
 
