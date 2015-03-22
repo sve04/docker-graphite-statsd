@@ -53,7 +53,7 @@ The default one looks like this:
 retentions = 5m:1d,15m:30d
 ```
 
-It will store data for 30 days, change that if you need to store data longer.
+It will store data for 30 days, change that if you need to store data longer. Etsy has good [documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to setup your Graphite metrics.
 
 ### Base Image
 
