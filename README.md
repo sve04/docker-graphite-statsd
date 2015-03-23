@@ -2,7 +2,7 @@
 
 ## Get Graphite running instantly to use with sitespeed.io
 
-This is a fork from [Hopsoft](https://github.com/hopsoft/docker-graphite-statsd) adding a couple of extra things. Massive love to Hopsoft for setting up the original.
+This is a fork from [Hopsoft](https://github.com/hopsoft/docker-graphite-statsd) Massive love to Hopsoft for setting up the original image.
 
 In this image, Graphite is always setup with Basic Auth (feed your .htpasswd file when starting) and the Graphite data dir is set to */opt/graphite/storage/whisper*.
 
@@ -13,7 +13,6 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   sitespeedio/graphite
 ```
 
@@ -24,7 +23,6 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
   sitespeedio/graphite
 ```
@@ -36,7 +34,6 @@ sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
-  -p 8125:8125/udp \
   -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
   -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper
   sitespeedio/graphite
@@ -45,12 +42,12 @@ sudo docker run -d \
 TODO also map log dirs
 
 ## Data retention
-You can change how often data will be stored in the  [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf).
+You can change how often data will be stored in the  [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) and how metrics will be aggregated over time in [storage-aggreagtion.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf).
 
 The default one looks like this:
 
 ```
-5m:1d,15m:21d,30m:2y
+5m:1d,15m:21d,30m:730d
 ```
 
 ### Base Image
