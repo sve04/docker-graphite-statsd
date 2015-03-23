@@ -47,8 +47,8 @@ You can change how often data will be stored in the  [storage-schemas.conf](http
 The default one looks like this:
 
 ```
-
 retentions = 5m:1d,15m:21d,30m:730d
+```
 
 It will store data for 2 years, change that if you need to store data longer. Etsy has good [documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to setup your Graphite metrics.
 
