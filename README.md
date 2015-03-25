@@ -27,7 +27,7 @@ sudo docker run -d \
   sitespeedio/graphite
 ```
 
-And the final config that you should do is map the graphite data dir outside of your container:
+And the final config that you should do is map the Graphite data dir outside of your container:
 
 ```sh
 sudo docker run -d \
@@ -47,10 +47,27 @@ You can change how often data will be stored in the  [storage-schemas.conf](http
 The default one looks like this:
 
 ```
-retentions = 5m:1d,15m:21d,30m:730d
+retentions = 5m:1d,15m:21d,30m:60d
 ```
 
-It will store data for 2 years, change that if you need to store data longer. Etsy has good [documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to setup your Graphite metrics.
+It will store data for 2 months, change that if you need to store data longer. Etsy has good [documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to setup your Graphite metrics.
+
+To change it, you can feed the image with a new *storage-schemas.conf*. The one you want to replace is located  
+*/opt/graphite/conf/storage-schemas.conf*
+
+Start your image like this:
+
+```sh
+sudo docker run -d \
+  --name graphite \
+  -p 8080:80 \
+  -p 2003:2003 \
+  -v /local/path/to/.htpasswd:/etc/nginx/.htpasswd \
+  -v /path/to/data/graphite/storage/whisper:/opt/graphite/storage/whisper \
+  -v /path/to/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf \
+  sitespeedio/graphite
+```
+
 
 ### Base Image
 
