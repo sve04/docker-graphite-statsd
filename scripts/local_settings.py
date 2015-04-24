@@ -202,5 +202,8 @@
 # MIDDLEWARE_CLASSES or APPS
 #from graphite.app_settings import *
 
+import os
+os.environ.setdefault('LANG','en_US')
+
 LOG_DIR = '/var/log/graphite'
 SECRET_KEY = '$(date +%s | sha256sum | base64 | head -c 64)'
