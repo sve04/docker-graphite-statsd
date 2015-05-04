@@ -22,33 +22,33 @@ RUN apt-get -y --force-yes install vim\
  nodejs
 
 # python dependencies
-RUN pip install django==1.3\
+RUN pip install django==1.4\
  python-memcached==1.53\
  django-tagging==0.3.1\
- whisper==0.9.12\
+ whisper==0.9.13\
  twisted==11.1.0\
  txAMQP==0.6.2
 
 # install graphite
-RUN git clone -b 0.9.12 https://github.com/graphite-project/graphite-web.git /usr/local/src/graphite-web
+RUN git clone -b 0.9.13-pre1 https://github.com/graphite-project/graphite-web.git /usr/local/src/graphite-web
 WORKDIR /usr/local/src/graphite-web
 RUN python ./setup.py install
 ADD scripts/local_settings.py /opt/graphite/webapp/graphite/local_settings.py
 ADD conf/graphite/ /opt/graphite/conf/
 
 # install whisper
-RUN git clone -b 0.9.12 https://github.com/graphite-project/whisper.git /usr/local/src/whisper
+RUN git clone -b 0.9.13 https://github.com/graphite-project/whisper.git /usr/local/src/whisper
 WORKDIR /usr/local/src/whisper
 RUN python ./setup.py install
 
 # install carbon
-RUN git clone -b 0.9.12 https://github.com/graphite-project/carbon.git /usr/local/src/carbon
+RUN git clone -b 0.9.13-pre1 https://github.com/graphite-project/carbon.git /usr/local/src/carbon
 WORKDIR /usr/local/src/carbon
 RUN python ./setup.py install
 
 # install statsd
-RUN git clone -b v0.7.2 https://github.com/etsy/statsd.git /opt/statsd
-ADD conf/statsd/config.js /opt/statsd/config.js
+#RUN git clone -b v0.7.2 https://github.com/etsy/statsd.git /opt/statsd
+#ADD conf/statsd/config.js /opt/statsd/config.js
 
 # config nginx
 RUN rm /etc/nginx/sites-enabled/default
@@ -69,7 +69,7 @@ ADD conf/logrotate /etc/logrotate.d/graphite
 ADD daemons/carbon.sh /etc/service/carbon/run
 ADD daemons/carbon-aggregator.sh /etc/service/carbon-aggregator/run
 ADD daemons/graphite.sh /etc/service/graphite/run
-ADD daemons/statsd.sh /etc/service/statsd/run
+# ADD daemons/statsd.sh /etc/service/statsd/run
 ADD daemons/nginx.sh /etc/service/nginx/run
 
 # cleanup
@@ -77,7 +77,7 @@ RUN apt-get clean\
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # defaults
-EXPOSE 80:80 2003:2003 8125:8125/udp
-VOLUME ["/opt/graphite", "/etc/nginx", "/opt/statsd", "/etc/logrotate.d", "/var/log"]
+
+VOLUME ["/opt/graphite", "/etc/nginx", "/etc/logrotate.d", "/var/log"]
 ENV HOME /root
 CMD ["/sbin/my_init"]
