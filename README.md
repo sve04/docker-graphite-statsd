@@ -2,7 +2,7 @@
 
 ## Get Graphite running instantly to use with sitespeed.io
 
-This is a fork from [Hopsoft](https://github.com/hopsoft/docker-graphite-statsd) Massive love to Hopsoft for setting up the original image.
+This is originally a fork from [Hopsoft](https://github.com/hopsoft/docker-graphite-statsd) (massive love to Hopsoft for setting up the original image) and now we just [wrap the official docker image](https://hub.docker.com/r/graphiteapp/graphite-statsd/) for Graphite. We wrap it and add some configuration to make sitespeed.io metrics to work better.
 
 In this image, Graphite is always setup with Basic Auth (feed your .htpasswd file when starting) and the Graphite data dir is set to */opt/graphite/storage/whisper*.
 
@@ -39,8 +39,6 @@ sudo docker run -d \
   sitespeedio/graphite
 ```
 
-TODO also map log dirs
-
 ## Data retention
 You can change how often data will be stored in the  [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) and how metrics will be aggregated over time in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf).
 
@@ -71,7 +69,4 @@ sudo docker run -d \
 
 ### Base Image
 
-Built using [Phusion's base image](https://github.com/phusion/baseimage-docker).
-
-* All Graphite related processes are run as daemons & monitored with [runit](http://smarden.org/runit/).
-* Includes additional services such as logrotate.
+Built using [Official Graphite Docker container](https://hub.docker.com/r/graphiteapp/graphite-statsd/).
