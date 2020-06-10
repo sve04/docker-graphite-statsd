@@ -1,4 +1,4 @@
-FROM graphiteapp/graphite-statsd:1.1.5-3
+FROM graphiteapp/graphite-statsd:1.1.5-12
 
 ADD ./conf/graphite/storage-schemas.conf /opt/graphite/conf/storage-schemas.conf
 ADD ./conf/graphite/storage-aggregation.conf /opt/graphite/conf/storage-aggregation.conf
